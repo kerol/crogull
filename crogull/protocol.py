@@ -23,8 +23,8 @@ class HttpProtocol(Protocol):
 
     def data_received(self, data):
         try:
-            # self.request = Request(**self.parser.parse_request(data))
-            self.request = Request()
+            self.request = Request(**self.parser.parse_request(data))
+            # self.request = Request()
         except Exception as e:
             print(e)
 
@@ -45,8 +45,8 @@ class HttpProtocol(Protocol):
 
     async def handle_request(self, request, write_callback):
         try:
-            # path = request.path
-            path = '/api/hello/'
+            path = request.path
+            # path = '/api/hello/'
             func = views.routed_path_view(path)
             if func is None:
                 resp = ErrorResponse(404)

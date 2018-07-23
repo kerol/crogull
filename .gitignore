@@ -22,11 +22,7 @@ venv/
 Pipfile*
 
 # test project
-demoapp
-helloapp
-config
 gunicorn.conf
 wsgi.py
 Helper.md
-manage.py
 httpparser

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+{{ data.title }}
+{% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+    .important {
+        color: #336699;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>Index</h1>
+<p class="important">
+    Welcome to my awesome homepage.
+</p>
+
+<h1>{{ request.method }}</h1>
+<h1>{{ request.path }}</h1>
+<h3>{{ request.args }}</h3>
+<h5>{{ request.headers }}</h5>
+
+{% endblock %}

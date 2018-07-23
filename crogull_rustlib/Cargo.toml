@@ -1,0 +1,12 @@
+[package]
+name = "crogull_rust"
+version = "0.1.0"
+authors = ["kerol <kerol@kepiture.com>"]
+
+[lib]
+name = "crogull_rust"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.2.7"
+features = ["extension-module"]

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+repo="picohttpparser"
+
+cd crogull_clib
+
+# compile and link to .so file
+so="libcrogull_c"
+gcc -c "$repo.c" -O3 -fpic -msse4.2
+gcc -shared -o "$repo.so" "$repo.o"
+mv "$repo.so" "$so.so"
+mv "$repo.o" "$so.o"
+if [[ `uname` == "Darwin" ]]
+then
+    strip -x "$so.so"
+else
+    strip "$so.so"
+fi
+
+cd ..
+
+cp crogull_clib/libcrogull_c.so crogull/parser/crogull_c.so
+
+python test.py

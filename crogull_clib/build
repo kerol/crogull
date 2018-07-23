@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# git clone master
+#repo="httpparser"
+#repo_url="https://github.com/kerol/httpparser.git"
+repo="picohttpparser"
+repo_url="https://github.com/h2o/picohttpparser.git"
+
+if [ ! -d "$repo" ]; then
+  git clone "$repo_url" "$repo"
+else
+  cd "$repo"
+  git pull
+  cd ..
+fi
+
+
+# copy .c and .h files
+cp "$repo/$repo.c" "$repo/$repo.h" .
+
+
+# compile and link to .so file
+so="libcrogull_c"
+gcc -c "$repo.c" -O3 -fpic -msse4.2
+gcc -shared -o "$repo.so" "$repo.o"
+mv "$repo.so" "$so.so"
+mv "$repo.o" "$so.o"
+if [[ `uname` == "Darwin" ]]
+then
+    strip -x "$so.so"
+else
+    strip "$so.so"
+fi

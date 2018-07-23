@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# build rustlib
+echo "----------"
+echo "start building rustlib..."
+cd crogull_rustlib
+sh build
+cd ..
+echo "build rustlib ok\n"
+
+# build clib
+echo "----------"
+echo "start building clib..."
+cd crogull_clib
+sh build
+cd ..
+echo "build clib ok\n"
+
+# copy *.so file
+echo "----------"
+echo "copy libs..."
+cp ./crogull_rustlib/target/release/libcrogull_rust.dylib ./tests/crogull_rust.so
+cp ./crogull_clib/libcrogull_c.so ./crogull_c.so
+echo "copy libs ok\n"
+
+# test rustlib
+echo "----------"
+echo "start test rustlib..."
+python tests/crogull_rust_test.py
+
+# test clib
+echo "----------"
+echo "start test clib..."
+python tests/crogull_c_test.py

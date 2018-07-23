@@ -1,0 +1,32 @@
+# Common
+.DS_Store
+*.log
+*.bak
+target/
+*.so
+*.o
+
+# IDE
+.idea
+.vscode
+*.iml
+
+# Node.js
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+env/
+venv/
+Pipfile*
+
+# test project
+demoapp
+helloapp
+config
+gunicorn.conf
+wsgi.py
+Helper.md
+manage.py
+httpparser
